@@ -1,0 +1,32 @@
+﻿@model IEnumerable<bankacademy.Models.Clients>
+@{
+    ViewBag.Title ="BankClients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clients and Customers</h2>
+
+<table class="table table-center table-bordered table-hover">
+    <tbody>
+
+        <tr><th>Name</th><th>Classification</th><th>Initial Value</th></tr>
+        @foreach (var clientname in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(clientname.Name, "Details", "Client", new { id = clientname.Id }, null) </td>
+            <td>@clientname.ClientType.Name</td>
+            <td align="right">@string.Format("{0:C}", clientname.ClientType.InitialAmt)</td>
+
+        </tr>
+}
+
+
+       
+
+    </tbody>
+
+
+
+
+</table>
+

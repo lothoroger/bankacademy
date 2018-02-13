@@ -1,0 +1,46 @@
+﻿@model IEnumerable<bankacademy.Models.Moviemodel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Movies</h2>
+
+<p>
+    @*<a href="/movie/new/" class="btn btn-primary btn-lg">NEW MOVIE&raquo;</a></p> *@
+
+    @using (Html.BeginForm("New", "Movie"))
+    {
+        <button type="submit" class="btn btn-primary">New Movie</button>
+    }
+        <table class="table">
+            <tr>
+                <th>
+                    Movie
+                </th>
+                <th>
+                    Genre
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genrelist.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<bankacademy.Models.Customermodel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Create</h2>
+
+<p>
+    @Html.ActionLink("Create New", "New")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+           Subscriber? Y or N    
+        </th>
+        
+        <th>
+           Membership Type
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSubscribedToNewsletter)
+        </td>
+      
+      
+        <td>
+              @string.Format("{0:C}", item.MembershipType.Name)
+
+            
+
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

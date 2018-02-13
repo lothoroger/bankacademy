@@ -1,0 +1,54 @@
+﻿@model bankacademy.ViewModels.NewCustomerViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+        <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+       <label>Name:</label>
+        @Html.EditorFor(model => model.customermodellist.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.customermodellist.Name, "", new { @class = "text-danger" })
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Date of Birth:</label>
+        @Html.EditorFor(model => model.customermodellist.Birthdate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.customermodellist.Birthdate, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+       <label>Membership Type</label>
+        @Html.DropDownListFor(model => model.customermodellist.MembershipTypeID, new SelectList(Model.MemberListType, "ID", "Name"), "Select Type", new { htmlAttributes = new { @class = "form-control" } })
+        
+    </div>
+
+    <div class="checkbox">
+        <label>
+              @Html.EditorFor(model => model.customermodellist.IsSubscribedToNewsletter)   <b>Subscriber? Y or N:</b>
+         </label>
+    </div>
+
+
+            <div class="form-group">
+
+              <p><br /><input type="submit" value="Create" class="btn btn-default" /></p>
+
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

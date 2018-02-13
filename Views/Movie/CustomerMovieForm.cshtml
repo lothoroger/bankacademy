@@ -1,0 +1,43 @@
+﻿@model bankacademy.ViewModels.MovieViewModel
+
+@{
+
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<h2>NEW MOVIE</h2>
+
+@using (Html.BeginForm("Save", "Movie"))
+{
+    @Html.ValidationSummary(true, "Please fix the following error(s).");
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moviemodel.Name):
+        @Html.TextBoxFor(m => m.Moviemodel.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moviemodel.NumberInStock):
+        @Html.TextBoxFor(m => m.Moviemodel.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Moviemodel.NumberInStock)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moviemodel.ReleaseDate):
+        @Html.TextBoxFor(m => m.Moviemodel.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moviemodel.GenreId):
+        @Html.DropDownListFor(m => m.Moviemodel.GenreId, new SelectList(Model.Genrelist, "Id", "Name"), "Select Genre Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Moviemodel.Id)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moviemodel.Description):
+        @Html.TextBoxFor(m => m.Moviemodel.Description, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Moviemodel.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Back to List", "Index")
+}
+
+

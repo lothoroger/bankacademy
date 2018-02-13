@@ -1,0 +1,68 @@
+﻿@model bankacademy.Models.Customermodel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Customer Detail</h2>
+
+<div>
+    <h4>Customer: @Model.Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+                <dt>
+            Subscriber? T or F
+        </dt>
+
+        <dd>
+            @Model.IsSubscribedToNewsletter
+        </dd>
+
+        <dt>
+            Membership Type:
+        </dt>
+
+        <dd>
+            @Model.MembershipType.Name
+        </dd>
+
+        <dt>
+            Discount Rate:
+        </dt>
+
+        <dd>
+            @Model.MembershipType.DiscountRate%
+        </dd>
+
+        <dt>
+            Sign-Up Fee:
+        </dt>
+
+        <dd>
+            @string.Format("{0:C}", Model.MembershipType.SignUpFee)
+        </dd>
+
+        <dt>
+            Duration:
+        </dt>
+
+        <dd>
+            @Model.MembershipType.DurationInMonths Month(s)
+        </dd>
+        @if (Model.Birthdate != null)
+        {
+        <dt>
+            Birthday:
+        </dt>
+
+        <dd>
+            @string.Format("{0:d}", Model.Birthdate)
+        </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id}) | 
+    @Html.ActionLink("Back to List", "Index") 
+</p>
